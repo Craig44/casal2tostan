@@ -21,5 +21,11 @@ cleanfile = function(file) {
     index <- unlist(apply(cbind(index1, index2), 1, function(x) seq(x[1],x[2])))
     file <- file[!is.in(1:length(file), index)]
   }
+  for(j in 1:length(file)) {
+    index <- regexpr("#", file[j])
+    if (index != -1) {
+      file[j] = substring(text = file[j],first = 0, last = index - 1)
+    }
+  }
   return(file);
 }
